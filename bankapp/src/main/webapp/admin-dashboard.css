@@ -18,7 +18,9 @@ h1 {
 
 .logout-button {
     color: #333;
-    text-decoration: none;
+    text-decoration: azure;
+    display: flex;
+    justify-content: right;
 }
 
 .app-grid {

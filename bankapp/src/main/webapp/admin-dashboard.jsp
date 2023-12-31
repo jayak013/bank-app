@@ -5,17 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accounting Dashboard</title>
-    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="admin-dashboard.css"> 
 </head>
 <body>
     <header>
-        <h1><c:out value="<%=request.getParameter(\"username\")%>"/></h1>
-        <a href="/logout" class="logout-button">Logout</a>
+        <h1>Welcome To Admin Dashboard </h1>
+        <h1>Username: <c:out value="<%=request.getParameter(\"username\")%>"/></h1>
+        <a href="login.jsp?action=logout" 	class="logout-button">Logout</a>
     </header>
 
     <main>
         <div class="app-grid">
-            <a href="/create-account" class="app-link">Create Account</a>
+            <a href="create-account.jsp?id=1" class="app-link">Create Account</a>
             <a href="/deposit" class="app-link">Deposit</a>
             <a href="/withdraw" class="app-link">Withdraw</a>
             <a href="/transfer" class="app-link">Transfer</a>
@@ -25,3 +26,4 @@
     </main>
 </body>
 </html>
+<%request.setAttribute("login", "admin"); %>

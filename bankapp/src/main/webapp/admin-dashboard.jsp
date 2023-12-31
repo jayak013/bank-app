@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<jsp:useBean id="service" class="com.zm.bankapp.service.UserServiceImpl"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>

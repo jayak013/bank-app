@@ -80,12 +80,12 @@ public class UserDAOImpl implements UserDAO<User,Customer>{
 		return rows;
 	}
 	@Override
-	public int getCustomerIdByName(String name) {
+	public int getCustomerIdByAadhaar(String aadhaar) {
 		int id = 0;
-		String query = "select cust_id from customer where cust_name=?";
+		String query = "select cust_id from customer where aadhaar=?";
 		try {
 			pst = con.prepareStatement(query);
-			pst.setString(1, name.toUpperCase());
+			pst.setString(1, aadhaar);
 			ResultSet rs = pst.executeQuery();
 			if(rs.next()) id=rs.getInt(1);
 		} catch (SQLException e) {
@@ -93,6 +93,8 @@ public class UserDAOImpl implements UserDAO<User,Customer>{
 		}
 		return id;
 	}
+	
+	
 	
 	public int createAccount(Customer customer) {
 		int rows = 0;
@@ -109,6 +111,25 @@ public class UserDAOImpl implements UserDAO<User,Customer>{
 			e.printStackTrace();
 		}
 		return rows;
+	}
+	@Override
+	public User getUserDetailsById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int getAccountNoByCustomerId(Integer id) {
+		int accountNo = 0;
+		String query = "select accountNo from account where cust_id = ?";
+		try {
+			pst = con.prepareStatement(query);
+			pst.setInt(1, id);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) accountNo=rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accountNo;
 	}
 
 }

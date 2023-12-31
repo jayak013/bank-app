@@ -7,5 +7,7 @@ public interface UserService<User,Customer> {
 	
 	boolean validateUserNameAndPassword(User user);
 	int createAccountAndCust(Customer customer);
-	int getAccountNoByCustId(Customer customer);
+	int getAccountNoByCustId(Integer id);
+	User getUserDetailsById(Integer id);
+	int getCustomerIdByAadhaar(String Aadhaar);
 }

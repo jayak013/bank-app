@@ -40,7 +40,7 @@ public class AdminController extends HttpServlet{
 			if(rowsInserted!=0) {
 				response.setContentType("text/html");
 				out.print("<h2>Account is created for Mr./Mrs. "+ name +"</h2>");
-				out.print("<h2>Account Number is "+ service.getAccountNoByCustId(customer) +"</h2>");
+				out.print("<h2>Account Number is "+ service.getAccountNoByCustId(service.getCustomerIdByAadhaar(aadhaar)) +"</h2>");
 			}
 		}
 	}

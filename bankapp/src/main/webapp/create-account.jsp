@@ -55,7 +55,7 @@ button:hover {
 </head>
 <body>
 
-	<form action=" create-account?action=create" method="post">
+	<form action="/admin/create-bank-account?action=create" method="post">
 		<label for="name">Name:</label> <input type="text" id="name"
 			name="name" required> <label for="dob">Date of Birth:</label>
 		<input type="date" id="dob" name="dob" required> <label

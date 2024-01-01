@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/create-account")
+@WebServlet("/admin")
 public class AdminController extends HttpServlet{
 	private static UserService<User, Customer> service = new UserServiceImpl();
 	private static String action = null;

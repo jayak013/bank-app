@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +8,16 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+	<%
+	session.setAttribute("login", request.getParameter("login"));
+	%>
+	<%
+	if (request.getParameter("login") == "admin") {
+		session.setAttribute("loggedin", "admin");
+	} else {
+		session.setAttribute("loggedin", "customer");
+	}
+	%>
 	<div class="login-container">
 		<h1>Login</h1>
 		<form class="login-form" id="loginForm" action="user" method="post">
@@ -27,19 +37,16 @@
 				<button type="submit">Login</button>
 				<button type="button" class="cancel" onclick="redirectForm()">Cancel</button>
 			</div>
-			<h2 style="color: red"><c:out value="<%=request.getAttribute(\"error\")%>"/></h2>
+			<h2 style="color: red">
+				<c:out value="<%=request.getAttribute(\"error\")%>" />
+			</h2>
 		</form>
 	</div>
 </body>
 <script>
-	function redirectForm(){
+	function redirectForm() {
 		window.location.href = "welcome.html";
 	}
 </script>
 </html>
-<%
-String action = request.getParameter("action");
-session.setAttribute("login", request.getParameter("login"));
-%>
-
 

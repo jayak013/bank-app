@@ -55,7 +55,7 @@ button:hover {
 </head>
 <body>
 
-	<form action="/admin/create-bank-account?action=create" method="post">
+	<form action="admin?action=create" method="post">
 		<label for="name">Name:</label> <input type="text" id="name"
 			name="name" required> <label for="dob">Date of Birth:</label>
 		<input type="date" id="dob" name="dob" required> <label
@@ -75,7 +75,7 @@ button:hover {
 			name="password" required> <label for="address">Address:</label>
 		<input id="address" name="address" required></input>
 
-		<button type="submit">Submit</button>
+		<button type="submit">Create Account</button>
 		<button onclick="redirectForm()">Go Back</button>
 	</form>
 <script>

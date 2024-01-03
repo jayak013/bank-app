@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/user")
 public class UserController extends HttpServlet{
@@ -23,31 +24,30 @@ public class UserController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			PrintWriter out = response.getWriter();
-			if(loginUser==null)loginUser = (String)request.getSession().getAttribute("login");
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			User user = new User(username,password);
-			if(service.validateUserNameAndPassword(user)){
-				  if(loginUser.equalsIgnoreCase("admin")) {
-					  RequestDispatcher rd = request.getRequestDispatcher("admin-dashboard.jsp");
-					  rd.forward(request, response);
-				  }else {
-					  RequestDispatcher rd = request.getRequestDispatcher("customer-dashboard.jsp");
-					  rd.forward(request, response);
-				  }
-			}else{
-				request.setAttribute("error", "Invalid username or password!");
-				if(loginUser.equalsIgnoreCase("admin")) {
-					 RequestDispatcher rd = request.getRequestDispatcher("login.jsp?login=admin");
-					 rd.forward(request, response);
-				  }else {
-					  RequestDispatcher rd = request.getRequestDispatcher("login.jsp?login=customer");
-					  rd.forward(request, response);
-				  }
-				
-				
+			HttpSession session = request.getSession();
+				if(loginUser==null)loginUser = (String)session.getAttribute("login");
+				String username = request.getParameter("username");
+				String password = request.getParameter("password");
+				User user = new User(username,password);
+				if(service.validateUserNameAndPassword(user)){
+					  if(loginUser.equalsIgnoreCase("admin")) {
+						  RequestDispatcher rd = request.getRequestDispatcher("admin-dashboard.jsp");
+						  rd.forward(request, response);
+					  }else {
+						  RequestDispatcher rd = request.getRequestDispatcher("customer-dashboard.jsp");
+						  rd.forward(request, response);
+					  }
+				}else{
+					request.setAttribute("error", "Invalid username or password!");
+					if(loginUser.equalsIgnoreCase("admin")) {
+						 RequestDispatcher rd = request.getRequestDispatcher("login.jsp?login=admin");
+						 rd.forward(request, response);
+					  }else {
+						  RequestDispatcher rd = request.getRequestDispatcher("login.jsp?login=customer");
+						  rd.forward(request, response);
+					  }
+				}
 			}
-		}
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
